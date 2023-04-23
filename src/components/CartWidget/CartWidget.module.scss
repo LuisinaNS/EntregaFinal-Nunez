@@ -1,0 +1,27 @@
+.container{
+    display: flex;
+}
+.icon {
+    color: white;
+    font-size: 22px;
+    padding-top: 5px;
+}
+
+.number{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    font-size: 12px;
+    color: rgba(14, 51, 96, 0.725);
+    background-color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+}
+
+.container:hover > *  {
+        color:  rgba(0, 0, 0, 0.404);
+        cursor: pointer;
+}

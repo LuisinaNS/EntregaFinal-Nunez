@@ -1,0 +1,21 @@
+.container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 50px 80px 80px 80px;
+    background-color:  rgba(0, 0, 0, 0.044);
+}
+.tittleContainer{
+    display: flex;
+    justify-content: center;
+}
+.title{
+    border: 3px solid rgba(0, 0, 0, 0.404);
+    text-align: center;
+    font-size: 24px;
+    border-radius: 9px;
+    padding: 10px;
+    color: rgba(14, 51, 96, 0.725);
+    font-weight: 600;
+    margin-top: 40px;
+}
