@@ -5,6 +5,8 @@ export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [carrito, setCarrito] = useState([]);
+  const [orden, setOrden] = useState();
+
   const agregarProducto = (nuevoItem, cantidad) => {
     const newCart = [...carrito];
     if (existeProducto(nuevoItem.id)) {
@@ -35,6 +37,13 @@ const CartProvider = ({ children }) => {
 
   const estaVacio = () => carrito.length === 0;
 
+  const definirOrden = (orden) => setOrden(orden);
+
+  const reiniciarContexto = () => {
+    setOrden();
+    setCarrito([]);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -44,8 +53,11 @@ const CartProvider = ({ children }) => {
         vaciarCarrito,
         calcularTotal,
         contarProductos,
+        definirOrden,
+        reiniciarContexto,
         estaVacio,
         carrito,
+        orden,
       }}
     >
       {children}

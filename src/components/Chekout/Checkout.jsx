@@ -1,11 +1,15 @@
-import { useContext, useEffect, useState } from "react";
 import styles from "./checkout.module.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/cartContext";
+import { addDoc, collection, getFirestore } from "firebase/firestore";
+
 const Checkout = () => {
-  const { estaVacio } = useContext(CartContext);
+  const { estaVacio, calcularTotal, carrito, definirOrden } =
+    useContext(CartContext);
   const navigate = useNavigate();
   const [form, setForm] = useState({});
+
   const handleChange = ({ target }) => {
     form[target.name] = target.value;
     setForm({ ...form });
@@ -16,6 +20,16 @@ const Checkout = () => {
   }, [estaVacio]);
 
   const fullForm = form?.nombre && form.apellido && form.telefono && form.email;
+
+  const submitOrder = async () => {
+    const order = { buyer: form, items: carrito, total: calcularTotal() };
+    const db = getFirestore();
+    const collecion = collection(db, "ordenes");
+    const { id: ordenId } = await addDoc(collecion, order);
+    definirOrden(ordenId);
+    return ordenId && navigate("/feedback");
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -44,11 +58,13 @@ const Checkout = () => {
             </form>
           </div>
           <p className={styles.btn}>
-            <Link to={"/"}>
-              <button disabled={!fullForm} className={"btn btn-primary"}>
-                Confirmar Compra
-              </button>
-            </Link>
+            <button
+              onClick={submitOrder}
+              disabled={!fullForm}
+              className={"btn btn-primary"}
+            >
+              Confirmar Compra
+            </button>
           </p>
         </div>
       </div>

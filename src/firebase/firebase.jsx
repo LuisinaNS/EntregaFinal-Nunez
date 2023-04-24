@@ -1,11 +1,3 @@
-import {
-  collection,
-  getDocs,
-  getFirestore,
-  query,
-  where,
-} from "firebase/firestore";
-
 const firebaseConfig = {
   apiKey: "AIzaSyALpERtQhIXk5Rt0Bf0OejnUW1PjTJEleQ",
   authDomain: "opticalu-4e650.firebaseapp.com",

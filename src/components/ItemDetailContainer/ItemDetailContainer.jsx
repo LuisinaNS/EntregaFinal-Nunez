@@ -17,7 +17,6 @@ const ItemDetailContainer = () => {
     modificarItem(item);
     setLoading(false);
   };
-  console.log(item);
   useEffect(() => {
     getProd();
   }, [id]);

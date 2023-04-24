@@ -7,6 +7,7 @@ import CartProvider from "./context/cartContext";
 import Cart from "./components/Cart/Cart";
 import DefaultFailView from "./components/DefaultFailView/DefaultFailView";
 import Checkout from "./components/Chekout/Checkout";
+import Feedback from "./components/Feedback/Feedback";
 
 function App() {
   return (
@@ -17,17 +18,11 @@ function App() {
 
           <Routes>
             <Route path="/" element={<ItemListContainer />} />
-
             <Route path="/category/:id" element={<ItemListContainer />} />
-
-            <Route
-              path="/item/:id"
-              element={
-                <ItemDetailContainer titulo="Este es el contenido de IDC" />
-              }
-            />
+            <Route path="/item/:id" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/feedback" element={<Feedback />} />
             <Route path="*" element={<DefaultFailView />} />
           </Routes>
         </div>
